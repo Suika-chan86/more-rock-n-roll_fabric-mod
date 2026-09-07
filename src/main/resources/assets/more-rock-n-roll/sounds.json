@@ -1,0 +1,66 @@
+{
+  "music_disc.nanmonee": {
+    "sounds": [
+      {
+        "name": "more-rock-n-roll:music_disc.nanmonee",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.kakumei": {
+    "sounds": [
+      {
+        "name": "more-rock-n-roll:music_disc.kakumei",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.time": {
+    "sounds": [
+      {
+        "name": "more-rock-n-roll:music_disc.time",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.homelandii": {
+    "sounds": [
+      {
+        "name": "more-rock-n-roll:music_disc.homelandii",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.in_the_aeroplane_over_the_sea": {
+    "sounds": [
+      {
+        "name": "more-rock-n-roll:music_disc.in_the_aeroplane_over_the_sea",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.summer68": {
+    "sounds": [
+      {
+        "name": "more-rock-n-roll:music_disc.summer68",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.siberian_khatru": {
+    "sounds": [
+      {
+        "name": "more-rock-n-roll:music_disc.siberian_khatru",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.dancing_with_my_own_shadow": {
+    "sounds": [
+      {
+        "name": "more-rock-n-roll:music_disc.dancing_with_my_own_shadow",
+        "stream": true
+      }
+    ]
+  }
+}

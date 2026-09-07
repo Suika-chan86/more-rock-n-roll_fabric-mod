@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "more-rock-n-roll",
+	"version": "${version}",
+	"name": "More Rock n Roll",
+	"description": "更多摇滚：精选",
+	"authors": [
+		"Suika-chan86"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/more-rock-n-roll/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.suikachan86.morerocknroll.MoreRockNRoll"
+		],
+		"fabric-datagen": [
+			"com.suikachan86.morerocknroll.MoreRockNRollDataGenerator"
+		],
+		"client": [
+			"com.suikachan86.morerocknroll.MoreRockNRollClient"
+		]
+	},
+	"mixins": [
+		"more-rock-n-roll.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}

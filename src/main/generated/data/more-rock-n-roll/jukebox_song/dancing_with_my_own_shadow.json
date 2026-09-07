@@ -1,0 +1,8 @@
+{
+  "comparator_output": 15,
+  "description": {
+    "translate": "jukebox_song.more-rock-n-roll.dancing_with_my_own_shadow"
+  },
+  "length_in_seconds": 360.0,
+  "sound_event": "more-rock-n-roll:music_disc.dancing_with_my_own_shadow"
+}

@@ -1,0 +1,45 @@
+# Gradle
+.gradle/
+build/
+out/
+classes/
+
+# Fabric development runs
+run/
+
+# Data generation cache (generated JSON files remain tracked)
+src/main/generated/.cache/
+
+# Unlicensed music recordings (other OGG sound effects remain trackable)
+src/main/resources/assets/more-rock-n-roll/sounds/music_disc.*.ogg
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Eclipse
+*.launch
+.settings/
+bin/
+.classpath
+.project
+
+# Visual Studio Code
+.vscode/
+
+# Java diagnostics
+hs_err_*.log
+replay_*.log
+*.hprof
+*.jfr
+
+# Operating systems
+*.DS_Store
+Thumbs.db
+
+# Local environment files
+.env
+.env.*
+*.local

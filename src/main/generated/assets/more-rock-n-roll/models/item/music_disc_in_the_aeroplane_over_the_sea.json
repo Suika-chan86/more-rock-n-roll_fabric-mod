@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "more-rock-n-roll:item/music_disc_in_the_aeroplane_over_the_sea"
+  }
+}
