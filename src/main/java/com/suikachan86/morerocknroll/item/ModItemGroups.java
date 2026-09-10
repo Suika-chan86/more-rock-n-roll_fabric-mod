@@ -1,6 +1,7 @@
 package com.suikachan86.morerocknroll.item;
 
 import com.suikachan86.morerocknroll.MoreRockNRoll;
+import com.suikachan86.morerocknroll.track.ModTracks;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -16,16 +17,11 @@ public class ModItemGroups {
 			Identifier.of(MoreRockNRoll.MOD_ID, "more_rock_n_roll"),
 			FabricItemGroup.builder()
 					.displayName(Text.translatable("itemGroup.more-rock-n-roll.more_rock_n_roll"))
-					.icon(() -> new ItemStack(ModItems.MUSIC_DISC_NANMONEE))
+					.icon(() -> new ItemStack(ModItems.get(ModTracks.ALL.getFirst())))
 					.entries((displayContext, entries) -> {
-						entries.add(ModItems.MUSIC_DISC_NANMONEE);
-						entries.add(ModItems.MUSIC_DISC_KAKUMEI);
-						entries.add(ModItems.MUSIC_DISC_TIME);
-						entries.add(ModItems.MUSIC_DISC_HOMELANDII);
-						entries.add(ModItems.MUSIC_DISC_IN_THE_AEROPLANE_OVER_THE_SEA);
-						entries.add(ModItems.MUSIC_DISC_SUMMER68);
-						entries.add(ModItems.MUSIC_DISC_SIBERIAN_KHATRU);
-						entries.add(ModItems.MUSIC_DISC_DANCING_WITH_MY_OWN_SHADOW);
+						for (var track : ModTracks.ALL) {
+							entries.add(ModItems.get(track));
+						}
 					})
 					.build()
 	);

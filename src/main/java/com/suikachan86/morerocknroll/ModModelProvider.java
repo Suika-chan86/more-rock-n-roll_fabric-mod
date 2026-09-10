@@ -1,6 +1,7 @@
 package com.suikachan86.morerocknroll;
 
 import com.suikachan86.morerocknroll.item.ModItems;
+import com.suikachan86.morerocknroll.track.ModTracks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
@@ -26,14 +27,9 @@ public class ModModelProvider extends FabricModelProvider {
 
 	@Override
 	public void generateItemModels(ItemModelGenerator itemModelGenerator) {
-		// 唱片：扁平物品（item/generated），贴图自动取 textures/item/music_disc_nanmonee.png
-		itemModelGenerator.register(ModItems.MUSIC_DISC_NANMONEE, Models.GENERATED);
-		itemModelGenerator.register(ModItems.MUSIC_DISC_KAKUMEI, Models.GENERATED);
-		itemModelGenerator.register(ModItems.MUSIC_DISC_TIME, Models.GENERATED);
-		itemModelGenerator.register(ModItems.MUSIC_DISC_HOMELANDII, Models.GENERATED);
-		itemModelGenerator.register(ModItems.MUSIC_DISC_IN_THE_AEROPLANE_OVER_THE_SEA, Models.GENERATED);
-		itemModelGenerator.register(ModItems.MUSIC_DISC_SUMMER68, Models.GENERATED);
-		itemModelGenerator.register(ModItems.MUSIC_DISC_SIBERIAN_KHATRU, Models.GENERATED);
-		itemModelGenerator.register(ModItems.MUSIC_DISC_DANCING_WITH_MY_OWN_SHADOW, Models.GENERATED);
+		// 唱片：扁平物品（item/generated），贴图按统一曲目 ID 自动推导。
+		for (var track : ModTracks.ALL) {
+			itemModelGenerator.register(ModItems.get(track), Models.GENERATED);
+		}
 	}
 }

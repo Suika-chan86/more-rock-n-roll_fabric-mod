@@ -1,39 +1,37 @@
 package com.suikachan86.morerocknroll.sound;
 
-import com.suikachan86.morerocknroll.MoreRockNRoll;
+import com.suikachan86.morerocknroll.track.ModTracks;
+import com.suikachan86.morerocknroll.track.TrackDefinition;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
-public class ModSoundEvents {
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-    // 普通声音（用于方块等）
-//    @SuppressWarnings("unused") // 压制“未使用”警告
-//    public static final SoundEvent PROSPECTOR_FOUND_ORE = register("prospector_found_ore");
+public final class ModSoundEvents {
+    private static final Map<String, RegistryEntry.Reference<SoundEvent>> SOUND_EVENTS = registerAll();
 
-    // 唱片专用声音（返回 Reference，方便 JukeboxSong 使用）
-    public static final RegistryEntry.Reference<SoundEvent> MUSIC_DISC_NANMONEE = registerReference("music_disc.nanmonee");
-    public static final RegistryEntry.Reference<SoundEvent> MUSIC_DISC_KAKUMEI = registerReference("music_disc.kakumei");
-    public static final RegistryEntry.Reference<SoundEvent> MUSIC_DISC_TIME = registerReference("music_disc.time");
-    public static final RegistryEntry.Reference<SoundEvent> MUSIC_DISC_HOMELANDII = registerReference("music_disc.homelandii");
-    public static final RegistryEntry.Reference<SoundEvent> MUSIC_DISC_IN_THE_AEROPLANE_OVER_THE_SEA = registerReference("music_disc.in_the_aeroplane_over_the_sea");
-    public static final RegistryEntry.Reference<SoundEvent> MUSIC_DISC_SUMMER68 = registerReference("music_disc.summer68");
-    public static final RegistryEntry.Reference<SoundEvent> MUSIC_DISC_SIBERIAN_KHATRU = registerReference("music_disc.siberian_khatru");
-    public static final RegistryEntry.Reference<SoundEvent> MUSIC_DISC_DANCING_WITH_MY_OWN_SHADOW = registerReference("music_disc.dancing_with_my_own_shadow");
+    private static Map<String, RegistryEntry.Reference<SoundEvent>> registerAll() {
+        Map<String, RegistryEntry.Reference<SoundEvent>> soundEvents = new LinkedHashMap<>();
+        for (TrackDefinition track : ModTracks.ALL) {
+            soundEvents.put(track.id(), registerReference(track.soundId()));
+        }
+        return Map.copyOf(soundEvents);
+    }
 
-    // 注册普通声音（返回 SoundEvent）
-//    @SuppressWarnings({"unused", "SameParameterValue"}) // 压制“未使用”警告, 压制“参数值固定”警告
-//    private static SoundEvent register(String name) {
-//        Identifier id = Identifier.of(MoreRockNRoll.MOD_ID, name);
-//        return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));
-//    }
-
-    // 注册唱片专用声音（返回 RegistryEntry.Reference<SoundEvent>）
-    private static RegistryEntry.Reference<SoundEvent> registerReference(String name) {
-        Identifier id = Identifier.of(MoreRockNRoll.MOD_ID, name);
+    private static RegistryEntry.Reference<SoundEvent> registerReference(Identifier id) {
         return Registry.registerReference(Registries.SOUND_EVENT, id, SoundEvent.of(id));
+    }
+
+    public static RegistryEntry.Reference<SoundEvent> get(TrackDefinition track) {
+        RegistryEntry.Reference<SoundEvent> sound = SOUND_EVENTS.get(track.id());
+        if (sound == null) {
+            throw new IllegalArgumentException("Unknown track: " + track.id());
+        }
+        return sound;
     }
 
     public static void initialize() {
