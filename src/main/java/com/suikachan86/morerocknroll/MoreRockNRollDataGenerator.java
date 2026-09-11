@@ -32,6 +32,15 @@ public class MoreRockNRollDataGenerator implements DataGeneratorEntrypoint {
 
 		// 生成物品模型（models/item/...）
 		pack.addProvider(ModModelProvider::new);
+
+		// 生成语言文件（assets/<mod id>/lang/...）
+		pack.addProvider((output, registriesFuture) ->
+				new ModLanguageProvider(output, "en_us", registriesFuture));
+		pack.addProvider((output, registriesFuture) ->
+				new ModLanguageProvider(output, "zh_cn", registriesFuture));
+
+		// 根据 ModTracks.ALL 完整生成 assets/<mod id>/sounds.json
+		pack.addProvider(ModSoundProvider::new);
 	}
 
 	@Override

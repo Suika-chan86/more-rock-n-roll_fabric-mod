@@ -9,6 +9,7 @@ import net.minecraft.util.Rarity;
 import net.minecraft.util.Util;
 
 import java.util.Objects;
+import java.util.Map;
 
 /**
  * The data shared by every music disc in the mod.
@@ -20,7 +21,8 @@ public record TrackDefinition(
         String id,
         float lengthSeconds,
         int comparatorOutput,
-        Rarity rarity
+        Rarity rarity,
+        Map<String, Translation> translations
 ) {
     public TrackDefinition {
         if (id == null || id.isBlank()) {
@@ -33,6 +35,8 @@ public record TrackDefinition(
             throw new IllegalArgumentException("Comparator output must be between 0 and 15: " + id);
         }
         Objects.requireNonNull(rarity, "rarity");
+        Objects.requireNonNull(translations, "translations");
+        translations = Map.copyOf(translations);
     }
 
     public Identifier soundId() {
@@ -53,5 +57,24 @@ public record TrackDefinition(
 
     public String jukeboxSongTranslationKey() {
         return Util.createTranslationKey("jukebox_song", MoreRockNRoll.id(id));
+    }
+
+    public Translation translationFor(String languageCode) {
+        Translation translation = translations.get(languageCode);
+        if (translation == null) {
+            throw new IllegalArgumentException("Missing translation for " + id + ": " + languageCode);
+        }
+        return translation;
+    }
+
+    public record Translation(String itemName, String songName) {
+        public Translation {
+            if (itemName == null || itemName.isBlank()) {
+                throw new IllegalArgumentException("Item translation must not be blank");
+            }
+            if (songName == null || songName.isBlank()) {
+                throw new IllegalArgumentException("Song translation must not be blank");
+            }
+        }
     }
 }
