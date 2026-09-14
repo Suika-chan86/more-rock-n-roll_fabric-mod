@@ -1,5 +1,6 @@
 package com.suikachan86.morerocknroll;
 
+import com.suikachan86.morerocknroll.block.ModBlocks;
 import com.suikachan86.morerocknroll.item.ModItemGroups;
 import com.suikachan86.morerocknroll.item.ModItems;
 import com.suikachan86.morerocknroll.sound.ModSoundEvents;
@@ -21,10 +22,14 @@ public class MoreRockNRoll implements ModInitializer {
 		LOGGER.info("Loading Mod sounds…");
 
 		// 加载物品
-		ModItems.initialize();
-		LOGGER.info("Loading Mod items…");
+          ModItems.initialize();
+          LOGGER.info("Loading Mod items…");
 
-		// 加载物品组（创造模式标签）
+          // 加载方块和方块物品
+          ModBlocks.initialize();
+          LOGGER.info("Loading Mod blocks…");
+
+          // 加载物品组（创造模式标签）
 		ModItemGroups.initialize();
 		LOGGER.info("Loading Mod item groups…");
 	}

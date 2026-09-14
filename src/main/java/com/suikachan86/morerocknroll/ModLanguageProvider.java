@@ -13,6 +13,10 @@ public final class ModLanguageProvider extends FabricLanguageProvider {
             "en_us", "More Rock n Roll",
             "zh_cn", "更多摇滚乐"
     );
+    private static final Map<String, String> BLOCK_NAMES = Map.of(
+            "en_us", "Music Player",
+            "zh_cn", "唱片播放器"
+    );
 
     private final String languageCode;
 
@@ -38,6 +42,11 @@ public final class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add(
                 "itemGroup.more-rock-n-roll.more_rock_n_roll",
                 itemGroupName
+        );
+
+        translationBuilder.add(
+                "block.more-rock-n-roll.music_player",
+                BLOCK_NAMES.get(languageCode)
         );
 
         for (var track : ModTracks.ALL) {

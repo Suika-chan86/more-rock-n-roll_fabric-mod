@@ -1,6 +1,7 @@
 package com.suikachan86.morerocknroll.item;
 
 import com.suikachan86.morerocknroll.MoreRockNRoll;
+import com.suikachan86.morerocknroll.block.ModBlocks;
 import com.suikachan86.morerocknroll.track.ModTracks;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
@@ -19,10 +20,11 @@ public class ModItemGroups {
 					.displayName(Text.translatable("itemGroup.more-rock-n-roll.more_rock_n_roll"))
 					.icon(() -> new ItemStack(ModItems.get(ModTracks.ALL.getFirst())))
 					.entries((displayContext, entries) -> {
-						for (var track : ModTracks.ALL) {
-							entries.add(ModItems.get(track));
-						}
-					})
+                          for (var track : ModTracks.ALL) {
+                              entries.add(ModItems.get(track));
+                          }
+                          entries.add(ModBlocks.MUSIC_PLAYER.asItem());
+                      })
 					.build()
 	);
 

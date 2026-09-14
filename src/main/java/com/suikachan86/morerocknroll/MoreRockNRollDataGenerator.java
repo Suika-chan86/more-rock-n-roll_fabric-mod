@@ -33,6 +33,10 @@ public class MoreRockNRollDataGenerator implements DataGeneratorEntrypoint {
 		// 生成物品模型（models/item/...）
 		pack.addProvider(ModModelProvider::new);
 
+		// 生成方块破坏后的掉落表
+		pack.addProvider((output, registriesFuture) ->
+				new ModBlockLootTableProvider(output, registriesFuture));
+
 		// 生成语言文件（assets/<mod id>/lang/...）
 		pack.addProvider((output, registriesFuture) ->
 				new ModLanguageProvider(output, "en_us", registriesFuture));
