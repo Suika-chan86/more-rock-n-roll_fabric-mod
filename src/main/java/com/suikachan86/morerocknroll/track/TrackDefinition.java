@@ -43,6 +43,10 @@ public record TrackDefinition(
         return MoreRockNRoll.id("music_disc." + id);
     }
 
+    public TrackRef ref() {
+        return TrackRef.builtIn(id);
+    }
+
     public Identifier itemId() {
         return MoreRockNRoll.id("music_disc_" + id);
     }

@@ -39,6 +39,8 @@ public final class ModTracks {
                     "静香的唱片", "6グラムの星")
     );
 
+    public static final BuiltInTrackCatalog BUILT_IN_CATALOG = BuiltInTrackCatalog.from(ALL);
+
     private static TrackDefinition track(
             String id,
             float lengthSeconds,
