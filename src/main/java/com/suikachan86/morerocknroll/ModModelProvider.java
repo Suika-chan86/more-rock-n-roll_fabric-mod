@@ -8,8 +8,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
-import net.minecraft.data.client.TexturedModel;
-import net.minecraft.util.Identifier;
+import net.minecraft.data.client.TextureMap;
 
 /**
  * datagen 生成物品模型。
@@ -25,10 +24,10 @@ public class ModModelProvider extends FabricModelProvider {
 
 	@Override
 	public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-		// Use the vanilla jukebox texture as a temporary visual placeholder.
 		blockStateModelGenerator.registerSingleton(
 				ModBlocks.MUSIC_PLAYER,
-				block -> TexturedModel.getCubeAll(Identifier.of("minecraft", "block/jukebox_side"))
+				TextureMap.sideTopBottom(ModBlocks.MUSIC_PLAYER),
+				Models.CUBE_BOTTOM_TOP
 		);
 		blockStateModelGenerator.registerParentedItemModel(
 				ModBlocks.MUSIC_PLAYER,

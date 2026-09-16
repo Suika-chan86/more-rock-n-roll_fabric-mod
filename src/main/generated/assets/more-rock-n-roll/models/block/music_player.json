@@ -1,6 +1,8 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "all": "minecraft:block/jukebox_side"
+    "bottom": "more-rock-n-roll:block/music_player_bottom",
+    "side": "more-rock-n-roll:block/music_player_side",
+    "top": "more-rock-n-roll:block/music_player_top"
   }
 }

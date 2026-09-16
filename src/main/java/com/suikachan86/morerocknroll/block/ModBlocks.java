@@ -18,7 +18,7 @@ public final class ModBlocks {
                     AbstractBlock.Settings.create()
                             .mapColor(MapColor.IRON_GRAY)
                             .strength(2.0f)
-                            .sounds(BlockSoundGroup.WOOD)
+                            .sounds(BlockSoundGroup.METAL)
             )
     );
 
