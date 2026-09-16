@@ -4,6 +4,7 @@ import net.minecraft.util.Rarity;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * The single source of truth for the mod's music-disc catalogue.
@@ -40,6 +41,23 @@ public final class ModTracks {
     );
 
     public static final BuiltInTrackCatalog BUILT_IN_CATALOG = BuiltInTrackCatalog.from(ALL);
+
+    public static TrackDefinition first() {
+        return ALL.getFirst();
+    }
+
+    public static Optional<TrackDefinition> find(TrackRef ref) {
+        return ALL.stream()
+                .filter(track -> track.ref().equals(ref))
+                .findFirst();
+    }
+
+    public static TrackDefinition next(TrackRef ref) {
+        int currentIndex = find(ref)
+                .map(ALL::indexOf)
+                .orElseThrow(() -> new IllegalArgumentException("Unknown built-in track: " + ref));
+        return ALL.get((currentIndex + 1) % ALL.size());
+    }
 
     private static TrackDefinition track(
             String id,

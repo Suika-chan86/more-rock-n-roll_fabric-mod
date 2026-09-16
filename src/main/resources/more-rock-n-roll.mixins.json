@@ -5,6 +5,10 @@
 	"mixins": [
 		"ExampleMixin"
 	],
+	"client": [
+		"SoundManagerAccessor",
+		"SoundSystemAccessor"
+	],
 	"injectors": {
 		"defaultRequire": 1
 	},

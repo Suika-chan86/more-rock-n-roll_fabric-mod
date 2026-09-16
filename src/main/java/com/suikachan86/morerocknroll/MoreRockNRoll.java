@@ -1,8 +1,10 @@
 package com.suikachan86.morerocknroll;
 
 import com.suikachan86.morerocknroll.block.ModBlocks;
+import com.suikachan86.morerocknroll.block.entity.ModBlockEntities;
 import com.suikachan86.morerocknroll.item.ModItemGroups;
 import com.suikachan86.morerocknroll.item.ModItems;
+import com.suikachan86.morerocknroll.network.MusicPlayerNetworking;
 import com.suikachan86.morerocknroll.sound.ModSoundEvents;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
@@ -17,6 +19,9 @@ public class MoreRockNRoll implements ModInitializer {
 	public void onInitialize() {
 		LOGGER.info("Hello Fabric world!");
 
+		// Register the server-to-client playback state channel before any action is sent.
+		MusicPlayerNetworking.initialize();
+
 		// 加载模组声音
 		ModSoundEvents.initialize();
 		LOGGER.info("Loading Mod sounds…");
@@ -28,6 +33,10 @@ public class MoreRockNRoll implements ModInitializer {
           // 加载方块和方块物品
           ModBlocks.initialize();
           LOGGER.info("Loading Mod blocks…");
+
+          // 加载方块实体
+          ModBlockEntities.initialize();
+          LOGGER.info("Loading Mod block entities…");
 
           // 加载物品组（创造模式标签）
 		ModItemGroups.initialize();

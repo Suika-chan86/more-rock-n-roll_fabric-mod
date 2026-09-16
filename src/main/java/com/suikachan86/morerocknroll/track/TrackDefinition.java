@@ -39,6 +39,10 @@ public record TrackDefinition(
         translations = Map.copyOf(translations);
     }
 
+    public long lengthTicks() {
+        return (long) Math.ceil(lengthSeconds * 20.0f);
+    }
+
     public Identifier soundId() {
         return MoreRockNRoll.id("music_disc." + id);
     }
