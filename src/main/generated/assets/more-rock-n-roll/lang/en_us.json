@@ -18,5 +18,16 @@
   "jukebox_song.more-rock-n-roll.nanmonee": "Nanmonee",
   "jukebox_song.more-rock-n-roll.siberian_khatru": "Siberian Khatru",
   "jukebox_song.more-rock-n-roll.summer68": "Summer '68",
-  "jukebox_song.more-rock-n-roll.time": "Time"
+  "jukebox_song.more-rock-n-roll.time": "Time",
+  "screen.more-rock-n-roll.music_player.current_track": "Current track: %s",
+  "screen.more-rock-n-roll.music_player.keyboard_hint": "Arrow keys: Select | Enter: Confirm",
+  "screen.more-rock-n-roll.music_player.no_track": "No track selected",
+  "screen.more-rock-n-roll.music_player.pause": "Pause",
+  "screen.more-rock-n-roll.music_player.resume": "Resume",
+  "screen.more-rock-n-roll.music_player.select_track": "Select track",
+  "screen.more-rock-n-roll.music_player.status": "Status: %s",
+  "screen.more-rock-n-roll.music_player.status.paused": "Paused",
+  "screen.more-rock-n-roll.music_player.status.playing": "Playing",
+  "screen.more-rock-n-roll.music_player.status.stopped": "Stopped",
+  "screen.more-rock-n-roll.music_player.stop": "Stop"
 }

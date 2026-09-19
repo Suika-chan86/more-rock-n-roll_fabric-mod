@@ -18,5 +18,16 @@
   "jukebox_song.more-rock-n-roll.nanmonee": "なんもねえ",
   "jukebox_song.more-rock-n-roll.siberian_khatru": "Siberian Khatru",
   "jukebox_song.more-rock-n-roll.summer68": "Summer '68",
-  "jukebox_song.more-rock-n-roll.time": "Time"
+  "jukebox_song.more-rock-n-roll.time": "Time",
+  "screen.more-rock-n-roll.music_player.current_track": "当前曲目：%s",
+  "screen.more-rock-n-roll.music_player.keyboard_hint": "方向键选择 | 回车确认",
+  "screen.more-rock-n-roll.music_player.no_track": "尚未选择曲目",
+  "screen.more-rock-n-roll.music_player.pause": "暂停",
+  "screen.more-rock-n-roll.music_player.resume": "恢复",
+  "screen.more-rock-n-roll.music_player.select_track": "选择曲目",
+  "screen.more-rock-n-roll.music_player.status": "状态：%s",
+  "screen.more-rock-n-roll.music_player.status.paused": "已暂停",
+  "screen.more-rock-n-roll.music_player.status.playing": "播放中",
+  "screen.more-rock-n-roll.music_player.status.stopped": "已停止",
+  "screen.more-rock-n-roll.music_player.stop": "停止"
 }

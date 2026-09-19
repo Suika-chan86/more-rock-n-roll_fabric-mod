@@ -49,6 +49,51 @@ public final class ModLanguageProvider extends FabricLanguageProvider {
                 BLOCK_NAMES.get(languageCode)
         );
 
+        translationBuilder.add(
+                "screen.more-rock-n-roll.music_player.select_track",
+                languageCode.equals("zh_cn") ? "选择曲目" : "Select track"
+        );
+        translationBuilder.add(
+                "screen.more-rock-n-roll.music_player.pause",
+                languageCode.equals("zh_cn") ? "暂停" : "Pause"
+        );
+        translationBuilder.add(
+                "screen.more-rock-n-roll.music_player.resume",
+                languageCode.equals("zh_cn") ? "恢复" : "Resume"
+        );
+        translationBuilder.add(
+                "screen.more-rock-n-roll.music_player.stop",
+                languageCode.equals("zh_cn") ? "停止" : "Stop"
+        );
+        translationBuilder.add(
+                "screen.more-rock-n-roll.music_player.keyboard_hint",
+                languageCode.equals("zh_cn") ? "方向键选择 | 回车确认" : "Arrow keys: Select | Enter: Confirm"
+        );
+        translationBuilder.add(
+                "screen.more-rock-n-roll.music_player.current_track",
+                languageCode.equals("zh_cn") ? "当前曲目：%s" : "Current track: %s"
+        );
+        translationBuilder.add(
+                "screen.more-rock-n-roll.music_player.no_track",
+                languageCode.equals("zh_cn") ? "尚未选择曲目" : "No track selected"
+        );
+        translationBuilder.add(
+                "screen.more-rock-n-roll.music_player.status",
+                languageCode.equals("zh_cn") ? "状态：%s" : "Status: %s"
+        );
+        translationBuilder.add(
+                "screen.more-rock-n-roll.music_player.status.playing",
+                languageCode.equals("zh_cn") ? "播放中" : "Playing"
+        );
+        translationBuilder.add(
+                "screen.more-rock-n-roll.music_player.status.paused",
+                languageCode.equals("zh_cn") ? "已暂停" : "Paused"
+        );
+        translationBuilder.add(
+                "screen.more-rock-n-roll.music_player.status.stopped",
+                languageCode.equals("zh_cn") ? "已停止" : "Stopped"
+        );
+
         for (var track : ModTracks.ALL) {
             var translation = track.translationFor(languageCode);
             translationBuilder.add(track.itemTranslationKey(), translation.itemName());

@@ -5,6 +5,7 @@ import com.suikachan86.morerocknroll.block.entity.ModBlockEntities;
 import com.suikachan86.morerocknroll.item.ModItemGroups;
 import com.suikachan86.morerocknroll.item.ModItems;
 import com.suikachan86.morerocknroll.network.MusicPlayerNetworking;
+import com.suikachan86.morerocknroll.screen.ModScreenHandlers;
 import com.suikachan86.morerocknroll.sound.ModSoundEvents;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
@@ -37,6 +38,10 @@ public class MoreRockNRoll implements ModInitializer {
           // 加载方块实体
           ModBlockEntities.initialize();
           LOGGER.info("Loading Mod block entities…");
+
+          // 加载界面
+          ModScreenHandlers.initialize();
+          LOGGER.info("Loading Mod screen handlers…");
 
           // 加载物品组（创造模式标签）
 		ModItemGroups.initialize();

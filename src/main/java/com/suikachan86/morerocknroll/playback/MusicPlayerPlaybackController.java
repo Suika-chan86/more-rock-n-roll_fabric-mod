@@ -23,12 +23,12 @@ public final class MusicPlayerPlaybackController {
 
         if (player.isSneaking()) {
             if (musicPlayer.isPlaying() || musicPlayer.isPaused()) {
-                stop(world, pos, musicPlayer, track);
+                stop(world, pos, musicPlayer);
             }
         } else if (musicPlayer.isPlaying()) {
-            pause(world, pos, musicPlayer, track);
+            pause(world, pos, musicPlayer);
         } else if (musicPlayer.isPaused()) {
-            resume(world, pos, musicPlayer, track);
+            resume(world, pos, musicPlayer);
         } else {
             start(world, pos, musicPlayer, track);
         }
@@ -40,7 +40,18 @@ public final class MusicPlayerPlaybackController {
             BlockState state,
             MusicPlayerBlockEntity musicPlayer
     ) {
-        if (world.isClient || !musicPlayer.isPlaying()) {
+        if (world.isClient) {
+            return;
+        }
+
+        if (musicPlayer.isPaused()) {
+            if (world.getTime() % 20L == 0L) {
+                MusicPlayerNetworking.broadcastSnapshot(world, pos, musicPlayer);
+            }
+            return;
+        }
+
+        if (!musicPlayer.isPlaying()) {
             return;
         }
 
@@ -52,11 +63,14 @@ public final class MusicPlayerPlaybackController {
             return;
         }
 
-        if (musicPlayer.positionTicks(world.getTime()) < currentTrack.lengthTicks()) {
+        if (musicPlayer.positionTicks(world.getTime()) >= currentTrack.lengthTicks()) {
+            start(world, pos, musicPlayer, ModTracks.next(currentTrack.ref()));
             return;
         }
 
-        start(world, pos, musicPlayer, ModTracks.next(currentTrack.ref()));
+        if (world.getTime() % 20L == 0L) {
+            MusicPlayerNetworking.broadcastSnapshot(world, pos, musicPlayer);
+        }
     }
 
     private static void start(
@@ -75,12 +89,16 @@ public final class MusicPlayerPlaybackController {
         );
     }
 
-    private static void pause(
+    public static void pause(
             World world,
             BlockPos pos,
-            MusicPlayerBlockEntity musicPlayer,
-            TrackDefinition track
+            MusicPlayerBlockEntity musicPlayer
     ) {
+        if (!musicPlayer.isPlaying()) {
+            return;
+        }
+
+        TrackDefinition track = selectedTrack(musicPlayer);
         long positionTicks = musicPlayer.pause(world.getTime());
         MusicPlayerNetworking.broadcast(
                 world,
@@ -91,12 +109,16 @@ public final class MusicPlayerPlaybackController {
         );
     }
 
-    private static void resume(
+    public static void resume(
             World world,
             BlockPos pos,
-            MusicPlayerBlockEntity musicPlayer,
-            TrackDefinition track
+            MusicPlayerBlockEntity musicPlayer
     ) {
+        if (!musicPlayer.isPaused()) {
+            return;
+        }
+
+        TrackDefinition track = selectedTrack(musicPlayer);
         long positionTicks = musicPlayer.resume(world.getTime());
         MusicPlayerNetworking.broadcast(
                 world,
@@ -107,12 +129,16 @@ public final class MusicPlayerPlaybackController {
         );
     }
 
-    private static void stop(
+    public static void stop(
             World world,
             BlockPos pos,
-            MusicPlayerBlockEntity musicPlayer,
-            TrackDefinition track
+            MusicPlayerBlockEntity musicPlayer
     ) {
+        if (!musicPlayer.isPlaying() && !musicPlayer.isPaused()) {
+            return;
+        }
+
+        TrackDefinition track = selectedTrack(musicPlayer);
         musicPlayer.stop();
         MusicPlayerNetworking.broadcast(
                 world,
@@ -121,6 +147,21 @@ public final class MusicPlayerPlaybackController {
                 MusicPlayerPlaybackPayload.STOP,
                 0L
         );
+    }
+
+    public static void selectTrack(
+            World world,
+            BlockPos pos,
+            MusicPlayerBlockEntity musicPlayer,
+            TrackDefinition track
+    ) {
+        start(world, pos, musicPlayer, track);
+    }
+
+    private static TrackDefinition selectedTrack(MusicPlayerBlockEntity musicPlayer) {
+        return musicPlayer.selectedTrack()
+                .flatMap(ModTracks::find)
+                .orElseGet(ModTracks::first);
     }
 
     private MusicPlayerPlaybackController() {

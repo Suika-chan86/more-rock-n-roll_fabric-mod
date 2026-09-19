@@ -8,6 +8,7 @@ import net.minecraft.registry.Registry;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public final class ModItems {
     private static final Map<String, Item> ITEMS = registerAll();
@@ -28,6 +29,12 @@ public final class ModItems {
             items.put(track.id(), item);
         }
         return Map.copyOf(items);
+    }
+
+    public static Optional<TrackDefinition> findTrack(Item item) {
+        return ModTracks.ALL.stream()
+                .filter(track -> ITEMS.get(track.id()) == item)
+                .findFirst();
     }
 
     public static Item get(TrackDefinition track) {
