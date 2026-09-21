@@ -13,6 +13,12 @@ public final class ModBlockEntities {
             BlockEntityType.Builder.create(MusicPlayerBlockEntity::new, ModBlocks.MUSIC_PLAYER).build()
     );
 
+    public static final BlockEntityType<MusicDiscShelfBlockEntity> MUSIC_DISC_SHELF = Registry.register(
+            Registries.BLOCK_ENTITY_TYPE,
+            MoreRockNRoll.id("music_disc_shelf"),
+            BlockEntityType.Builder.create(MusicDiscShelfBlockEntity::new, ModBlocks.MUSIC_DISC_SHELF).build()
+    );
+
     private ModBlockEntities() {
     }
 

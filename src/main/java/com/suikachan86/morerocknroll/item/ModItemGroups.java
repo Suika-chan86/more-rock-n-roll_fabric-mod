@@ -24,6 +24,7 @@ public class ModItemGroups {
                               entries.add(ModItems.get(track));
                           }
                           entries.add(ModBlocks.MUSIC_PLAYER.asItem());
+                          entries.add(ModBlocks.MUSIC_DISC_SHELF.asItem());
                       })
 					.build()
 	);
