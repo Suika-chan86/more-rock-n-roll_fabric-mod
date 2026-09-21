@@ -18,5 +18,6 @@ public final class ModBlockLootTableProvider extends FabricBlockLootTableProvide
     @Override
     public void generate() {
         addDrop(ModBlocks.MUSIC_PLAYER);
+        addDrop(ModBlocks.MUSIC_DISC_SHELF);
     }
 }

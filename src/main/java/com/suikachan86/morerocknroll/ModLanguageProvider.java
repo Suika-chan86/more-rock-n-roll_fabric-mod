@@ -48,6 +48,10 @@ public final class ModLanguageProvider extends FabricLanguageProvider {
                 "block.more-rock-n-roll.music_player",
                 BLOCK_NAMES.get(languageCode)
         );
+        translationBuilder.add(
+                "block.more-rock-n-roll.music_disc_shelf",
+                languageCode.equals("zh_cn") ? "唱片展示架" : "Music Disc Shelf"
+        );
 
         translationBuilder.add(
                 "screen.more-rock-n-roll.music_player.select_track",

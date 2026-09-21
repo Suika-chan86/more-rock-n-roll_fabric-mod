@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "PPP",
+    "S S",
+    "PPP"
+  ],
+  "key": {
+    "P": { "item": "minecraft:oak_planks" },
+    "S": { "item": "minecraft:oak_slab" }
+  },
+  "result": {
+    "id": "more-rock-n-roll:music_disc_shelf",
+    "count": 1
+  }
+}
