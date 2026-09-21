@@ -33,6 +33,9 @@ public class MoreRockNRollDataGenerator implements DataGeneratorEntrypoint {
 		// 生成物品模型（models/item/...）
 		pack.addProvider(ModModelProvider::new);
 
+		// 生成展示架的占用状态、固定槽位模型和朝向组合
+		pack.addProvider(MusicDiscShelfModelProvider::new);
+
 		// 生成方块破坏后的掉落表
 		pack.addProvider((output, registriesFuture) ->
 				new ModBlockLootTableProvider(output, registriesFuture));

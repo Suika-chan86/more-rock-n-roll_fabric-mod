@@ -1,0 +1,41 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "texture": "#disc"
+        },
+        "east": {
+          "texture": "#disc"
+        },
+        "north": {
+          "texture": "#disc"
+        },
+        "south": {
+          "texture": "#disc"
+        },
+        "up": {
+          "texture": "#disc"
+        },
+        "west": {
+          "texture": "#disc"
+        }
+      },
+      "from": [
+        10.15,
+        3.0,
+        0.0
+      ],
+      "to": [
+        11.85,
+        5.5,
+        1.0
+      ]
+    }
+  ],
+  "textures": {
+    "disc": "more-rock-n-roll:item/music_disc_in_the_aeroplane_over_the_sea",
+    "particle": "more-rock-n-roll:item/music_disc_in_the_aeroplane_over_the_sea"
+  }
+}
