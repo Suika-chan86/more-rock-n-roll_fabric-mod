@@ -11,11 +11,23 @@ public final class MusicPlayerScreenPropertyDelegate implements PropertyDelegate
     public static final int TRACK_INDEX = 0;
     public static final int PLAYBACK_STATE = 1;
     public static final int POSITION_TICKS = 2;
-    public static final int SIZE = 3;
+    public static final int POS_X = 3;
+    public static final int POS_Y = 4;
+    public static final int POS_Z = 5;
+    public static final int POSITION_READY = 6;
+    public static final int SIZE = 7;
 
     private final World world;
     private final BlockPos pos;
-    private final int[] clientValues = {-1, MusicPlayerPlaybackState.STOPPED.id(), 0};
+    private final int[] clientValues = {
+            -1,
+            MusicPlayerPlaybackState.STOPPED.id(),
+            0,
+            0,
+            0,
+            0,
+            0
+    };
 
     public MusicPlayerScreenPropertyDelegate(World world, BlockPos pos) {
         this.world = world;
@@ -32,7 +44,7 @@ public final class MusicPlayerScreenPropertyDelegate implements PropertyDelegate
             return switch (index) {
                 case TRACK_INDEX -> -1;
                 case PLAYBACK_STATE -> MusicPlayerPlaybackState.STOPPED.id();
-                case POSITION_TICKS -> 0;
+                case POSITION_TICKS, POS_X, POS_Y, POS_Z, POSITION_READY -> 0;
                 default -> throw new IndexOutOfBoundsException("Unknown music player property: " + index);
             };
         }
@@ -44,6 +56,10 @@ public final class MusicPlayerScreenPropertyDelegate implements PropertyDelegate
                     .orElse(-1);
             case PLAYBACK_STATE -> musicPlayer.playbackState().id();
             case POSITION_TICKS -> positionTicks(musicPlayer);
+            case POS_X -> pos.getX();
+            case POS_Y -> pos.getY();
+            case POS_Z -> pos.getZ();
+            case POSITION_READY -> 1;
             default -> throw new IndexOutOfBoundsException("Unknown music player property: " + index);
         };
     }

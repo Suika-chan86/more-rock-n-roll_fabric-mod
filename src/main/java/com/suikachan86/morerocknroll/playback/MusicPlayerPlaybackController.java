@@ -7,6 +7,8 @@ import com.suikachan86.morerocknroll.track.ModTracks;
 import com.suikachan86.morerocknroll.track.TrackDefinition;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -63,9 +65,14 @@ public final class MusicPlayerPlaybackController {
             return;
         }
 
-        if (musicPlayer.positionTicks(world.getTime()) >= currentTrack.lengthTicks()) {
+        long positionTicks = musicPlayer.positionTicks(world.getTime());
+        if (positionTicks >= currentTrack.lengthTicks()) {
             start(world, pos, musicPlayer, ModTracks.next(currentTrack.ref()));
             return;
+        }
+
+        if (positionTicks > 0L && positionTicks % 20L == 0L) {
+            spawnNoteParticle(world, pos);
         }
 
         if (world.getTime() % 20L == 0L) {
@@ -80,6 +87,7 @@ public final class MusicPlayerPlaybackController {
             TrackDefinition track
     ) {
         musicPlayer.start(track.ref(), world.getTime());
+        spawnNoteParticle(world, pos);
         MusicPlayerNetworking.broadcast(
                 world,
                 pos,
@@ -158,6 +166,23 @@ public final class MusicPlayerPlaybackController {
         start(world, pos, musicPlayer, track);
     }
 
+    private static void spawnNoteParticle(World world, BlockPos pos) {
+        if (!(world instanceof ServerWorld serverWorld)) {
+            return;
+        }
+
+        serverWorld.spawnParticles(
+                ParticleTypes.NOTE,
+                pos.getX() + 0.5,
+                pos.getY() + 1.2,
+                pos.getZ() + 0.5,
+                1,
+                0.0,
+                world.getRandom().nextInt(4) / 24.0,
+                0.0,
+                1.0
+        );
+    }
     private static TrackDefinition selectedTrack(MusicPlayerBlockEntity musicPlayer) {
         return musicPlayer.selectedTrack()
                 .flatMap(ModTracks::find)

@@ -19,7 +19,8 @@ public final class MusicPlayerScreen extends HandledScreen<MusicPlayerScreenHand
     private static final int PROGRESS_LEFT = 10;
     private static final int PROGRESS_WIDTH = WIDTH - 92;
     private static final int PROGRESS_HEIGHT = 7;
-    private static final int TRACK_TOP = 64;
+    private static final int TRACK_TOP = 68;
+    private static final int TRACK_LABEL_TOP = 52;
     private static final int ROW_HEIGHT = 16;
     private static final int VISIBLE_TRACKS = 6;
     private static final int LIST_HEIGHT = VISIBLE_TRACKS * ROW_HEIGHT;
@@ -94,7 +95,7 @@ public final class MusicPlayerScreen extends HandledScreen<MusicPlayerScreenHand
                 textRenderer,
                 Text.translatable("screen.more-rock-n-roll.music_player.select_track"),
                 10,
-                TRACK_TOP - 12,
+                TRACK_LABEL_TOP,
                 0xB0B0B0,
                 false
         );
@@ -509,14 +510,18 @@ public final class MusicPlayerScreen extends HandledScreen<MusicPlayerScreenHand
         }
 
         int controlIndex = focusedOption - ModTracks.ALL.size();
-        clickButton(switch (controlIndex) {
+        int buttonId = switch (controlIndex) {
             case 0 -> MusicPlayerScreenHandler.PAUSE_BUTTON;
             case 1 -> MusicPlayerScreenHandler.RESUME_BUTTON;
             case 2 -> MusicPlayerScreenHandler.STOP_BUTTON;
             default -> throw new IllegalStateException("Unknown music player control: " + controlIndex);
-        });
+        };
+        if (buttonId == MusicPlayerScreenHandler.PAUSE_BUTTON) {
+            // Hide client/server and audio-thread latency while the server remains authoritative.
+            handler.blockPos().ifPresent(MusicPlayerClientAudio::pauseLocally);
+        }
+        clickButton(buttonId);
     }
-
     private void clickButton(int id) {
         MinecraftClient client = MinecraftClient.getInstance();
         if (client.interactionManager != null) {

@@ -15,6 +15,8 @@ import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import java.util.Optional;
+
 public final class MusicPlayerScreenHandler extends ScreenHandler {
     public static final int PAUSE_BUTTON = 100;
     public static final int RESUME_BUTTON = 101;
@@ -95,6 +97,17 @@ public final class MusicPlayerScreenHandler extends ScreenHandler {
 
     public int positionTicks() {
         return state.get(MusicPlayerScreenPropertyDelegate.POSITION_TICKS);
+    }
+
+    public Optional<BlockPos> blockPos() {
+        if (state.get(MusicPlayerScreenPropertyDelegate.POSITION_READY) == 0) {
+            return Optional.empty();
+        }
+        return Optional.of(new BlockPos(
+                state.get(MusicPlayerScreenPropertyDelegate.POS_X),
+                state.get(MusicPlayerScreenPropertyDelegate.POS_Y),
+                state.get(MusicPlayerScreenPropertyDelegate.POS_Z)
+        ));
     }
 
     public boolean canPause() {

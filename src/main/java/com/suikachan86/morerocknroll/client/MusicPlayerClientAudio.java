@@ -116,6 +116,10 @@ public final class MusicPlayerClientAudio {
         MinecraftClient.getInstance().getSoundManager().play(sound);
     }
 
+    public static void pauseLocally(BlockPos pos) {
+        pause(pos);
+    }
+
     private static void pause(BlockPos pos) {
         PositionedSoundInstance sound = ACTIVE_SOUNDS.get(pos);
         if (sound == null || !runOnSource(sound, source -> source.pause())) {
